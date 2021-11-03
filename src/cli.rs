@@ -51,6 +51,7 @@ pub fn double_perm_decode(cfg: Conf) -> Result<(), DecodingError> {
 pub fn parse_config(matches: &ArgMatches) -> Option<Args> {
     let encode_matches =  matches.subcommand_matches("encode");
     if encode_matches.is_some() {
+        let matches = encode_matches.unwrap();
         let inp: &str = matches.value_of("input")?;
         let out: &str = matches.value_of("output")?;
         let hkey: &str = matches.value_of("hkey")?;
@@ -64,6 +65,7 @@ pub fn parse_config(matches: &ArgMatches) -> Option<Args> {
 
     let decode_matches = matches.subcommand_matches("decode");
     if decode_matches.is_some() {
+        let matches = decode_matches.unwrap();
         let inp: &str = matches.value_of("input")?;
         let out: &str = matches.value_of("output")?;
         let hkey: &str = matches.value_of("hkey")?;

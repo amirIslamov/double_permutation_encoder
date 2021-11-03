@@ -1,8 +1,6 @@
 use clap::{App, Arg, SubCommand};
-
-use task2::cli::Args::{self};
-use task2::cli::{double_perm_decode, double_perm_encode, parse_config};
-use task2::cli::error::{DecodingError, EncodingError};
+use double_permutation_encoder::cli::{Args, double_perm_decode, double_perm_encode, parse_config};
+use double_permutation_encoder::cli::error::{DecodingError, EncodingError};
 
 fn main() {
     let app = App::new("Double permutation encoder/decoder")
@@ -17,19 +15,27 @@ fn main() {
                 .arg(Arg::new("input")
                     .short('i')
                     .about("sets input file location")
-                    .required(true))
+                    .required(true)
+                    .takes_value(true)
+                    .value_name("INPUT_FILE"))
                 .arg(Arg::new("output")
                     .short('o')
                     .about("sets output file location")
-                    .required(true))
+                    .required(true)
+                    .takes_value(true)
+                    .value_name("OUTPUT_FILE"))
                 .arg(Arg::new("hkey")
-                    .short('h')
+                    .short('q')
                     .about("sets horizontal key file location")
-                    .required(true))
+                    .required(true)
+                    .takes_value(true)
+                    .value_name("HKEY_FILE"))
                 .arg(Arg::new("vkey")
-                    .short('v')
+                    .short('r')
                     .about("ets verikal key file location")
-                    .required(true))
+                    .required(true)
+                    .takes_value(true)
+                    .value_name("VKEY_FILE")))
         .subcommand(
             SubCommand::with_name("decode")
                 .about("decodes input file using a pair of keys")
@@ -38,19 +44,27 @@ fn main() {
                 .arg(Arg::new("input")
                     .short('i')
                     .about("sets input file location")
-                    .required(true))
+                    .required(true)
+                    .takes_value(true)
+                    .value_name("INPUT_FILE"))
                 .arg(Arg::new("output")
                     .short('o')
                     .about("sets output file location")
-                    .required(true))
+                    .required(true)
+                    .takes_value(true)
+                    .value_name("OUTPUT_FILE"))
                 .arg(Arg::new("hkey")
                     .short('h')
                     .about("sets horizontal key file location")
-                    .required(true))
+                    .required(true)
+                    .takes_value(true)
+                    .value_name("HKEY_FILE"))
                 .arg(Arg::new("vkey")
                     .short('v')
                     .about("ets verikal key file location")
-                    .required(true)))
+                    .required(true)
+                    .takes_value(true)
+                    .value_name("VKEY_FILE"))
     );
 
     let matches = app.get_matches();

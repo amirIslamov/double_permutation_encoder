@@ -37,8 +37,8 @@ impl<'a, 'b, 'c> DoublePermutationEncoded<'a, 'b, 'c> {
         let block_num = index / block_size;
         let block_position = index % block_size;
 
-        let i = block_position / self.hkey.len();
-        let j = block_position % self.hkey.len();
+        let i = block_position / self.vkey.len();
+        let j = block_position % self.vkey.len();
 
         let i_in_decoded = self.hkey.iter().position(|x| *x == j).unwrap();
         let j_in_decoded = self.vkey.iter().position(|x| *x == i).unwrap();
